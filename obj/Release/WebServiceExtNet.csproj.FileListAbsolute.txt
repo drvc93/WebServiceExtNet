@@ -1,0 +1,5 @@
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\WebServiceExtNet.dll
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\WebServiceExtNet.pdb
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.dll
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.pdb
