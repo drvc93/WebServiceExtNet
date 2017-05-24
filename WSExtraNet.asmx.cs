@@ -19,8 +19,8 @@ namespace WebServiceExtNet
     // [System.Web.Script.Services.ScriptService]
     public class WSExtraNet : System.Web.Services.WebService
     {
-
         Conexion con = new Conexion();
+
         #region Services App Clientes
 
         [WebMethod]
@@ -30,10 +30,10 @@ namespace WebServiceExtNet
         }
 
         [WebMethod]
-        public string VerificarUsuarioExiste(string dni) {
-
-            string  sql, result = "";
-            int cont=0;
+        public string VerificarUsuarioExiste(string dni)
+        {
+            string sql, result = "";
+            int cont = 0;
             sql = "SELECT count(*) n_count FROM TBC_USUARIO where v_dni = '" + dni + "'";
             SqlConnection cn = con.conexion();
             cn.Open();
@@ -45,29 +45,29 @@ namespace WebServiceExtNet
 
             if (dt != null)
             {
-                cont  =  Convert.ToInt32( dt.Rows[0]["n_count"]);
+                cont = Convert.ToInt32(dt.Rows[0]["n_count"]);
             }
             if (cont == 0)
             {
                 result = "OK";
             }
-            else if(cont > 0)
+            else if (cont > 0)
             {
                 result = "NO";
             }
 
             return result;
-        
         }
 
         [WebMethod]
 
-        public string InsertarUsuario  ( string  dni , string  nombre  , string apellido , string fechanac ,string mail ,
-                                        string telefono ,string empruc , string empnom) {
+        public string InsertarUsuario(string dni, string nombre, string apellido, string fechanac, string mail,
+            string telefono, string empruc, string empnom)
+        {
             string res = "-1";
             int sqlrows;
 
-            if (dni == "" || String.IsNullOrEmpty(dni)==true) 
+            if (dni == "" || String.IsNullOrEmpty(dni) == true) 
             {
                 return "-1";
             }
@@ -98,23 +98,55 @@ namespace WebServiceExtNet
                     res = Convert.ToString(sqlcmd.Parameters["@IdReg"].Value);
                 }
             }
-
-            catch (Exception e) {
-
-          //      res = e.Message;
+            catch (Exception e)
+            {
+                //      res = e.Message;
                 res = "-1";
             }
-      
 
             return res;
-
-
-        
         }
 
         [WebMethod]
-        public string TransferirUsuario(string tipo, int correlativo) {
+        public string InsertarCodigoQR(string dniQR, string codigoQR, string dniUF, string telefonoUF, string correoUF)
+        {
+            string res = "-1";
+            int sqlrows;
+            try
+            {
+                SqlConnection cn = con.conexion();
+                SqlCommand sqlcmd = new SqlCommand("SP_CO_INSERT_CODIGOQR", cn);
+                sqlcmd.Connection = cn;
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
 
+                sqlcmd.Parameters.AddWithValue("@dniQR", dniQR);
+                sqlcmd.Parameters.AddWithValue("@CodigoQR", codigoQR);
+                sqlcmd.Parameters.AddWithValue("@dniUF", dniUF);
+                sqlcmd.Parameters.AddWithValue("@TelefonoUF", telefonoUF);
+                sqlcmd.Parameters.AddWithValue("@CorreoUF", correoUF.Trim().ToLower());
+               
+                SqlParameter par = new SqlParameter("@IdReg", SqlDbType.Int);
+                par.Direction = ParameterDirection.Output;
+                sqlcmd.Parameters.Add(par);
+                sqlrows = sqlcmd.ExecuteNonQuery();
+
+                if (sqlrows > 0)
+                {
+                    res = Convert.ToString(sqlcmd.Parameters["@IdReg"].Value);
+                }
+            }
+            catch (Exception e)
+            {
+                res = "-1";
+            }
+
+            return res;
+        }
+
+        [WebMethod]
+        public string TransferirUsuario(string tipo, int correlativo)
+        {
             string res = "-1";
             int sqlrows;
             try
@@ -133,9 +165,7 @@ namespace WebServiceExtNet
                 sqlcmd.Parameters.Add(par);
                 sqlrows = sqlcmd.ExecuteNonQuery();
                 res = sqlcmd.Parameters["@Mensaje"].Value.ToString();
-                
             }
-
             catch (Exception e)
             {
                 res = e.Message;
@@ -143,17 +173,52 @@ namespace WebServiceExtNet
 
             if (res == "OK")
             {
-                this.EnviarCorreoInfo(correlativo);
+               // this.EnviarCorreoInfo(correlativo);
             }
 
             return res;
         }
 
+        [WebMethod]
+        public CUsuario[] AutenticarLogin(string user, string clave)
+        {
+            List<CUsuario> listaUsuarios = new List<CUsuario>();
+            string SqL = "SELECT c_dni, c_clave, c_nombre, c_apellido, d_fechaNac, c_mail, c_telefono, c_emprRuc, c_emprNom " +
+                         " FROM MVE_USUARIO where c_dni = '" + user + "' and c_clave = '" + clave + "'";
+            SqlConnection cn = con.conexion();
+            cn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter(SqL, cn);
+            DataTable dt = new DataTable();
+            dap.SelectCommand.CommandType = CommandType.Text;
+           
+            dap.Fill(dt);
+            cn.Close();
 
-        public void EnviarCorreoInfo(int correlativo) {
+            if (dt != null)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CUsuario u = new CUsuario();
+                    u.Dni = dt.Rows[i]["c_dni"].ToString();
+                    u.Clave = dt.Rows[i]["c_clave"].ToString();
+                    u.Nombre = dt.Rows[i]["c_nombre"].ToString();
+                    u.Apellido = dt.Rows[i]["c_apellido"].ToString();
+                    u.FechaNacimiento = dt.Rows[i]["d_fechaNac"].ToString();
+                    u.Mail = dt.Rows[i]["c_mail"].ToString();
+                    u.Telefono = dt.Rows[i]["c_telefono"].ToString();
+                    u.Empruc = dt.Rows[i]["c_emprRuc"].ToString();
+                    u.Empnom = dt.Rows[i]["c_emprNom"].ToString();
 
+                    listaUsuarios.Add(u);
+                }
+            }
 
-            string correEnv ="", Html = "";
+            return listaUsuarios.ToArray();
+        }
+
+        public void EnviarCorreoInfo(int correlativo)
+        {
+            string correEnv = "", Html = "";
 
             SqlConnection cn = con.conexion();
             cn.Open();
@@ -161,7 +226,46 @@ namespace WebServiceExtNet
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Correlativo", correlativo);
-            
+
+            dap.Fill(dt);
+            cn.Close();
+
+            if (dt != null)
+            {
+                correEnv = dt.Rows[0]["c_correo"].ToString();
+                Html = dt.Rows[0]["c_html"].ToString();
+            }
+
+            SmtpClient client = new SmtpClient();
+            client.Port = 25;
+            client.Host = "100.100.100.7";//"smtp.gmail.com";
+            client.EnableSsl = true;
+            client.Timeout = 15000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("", "");
+
+            MailMessage mm = new MailMessage("dvillanueva@filtroslys.com.pe", correEnv, "Confirmación de pago", Html);
+            mm.IsBodyHtml = true;
+
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+            client.Send(mm);
+        }
+
+        [WebMethod]
+
+        public CAccesos[] ListaAccesos(string dni) 
+        {
+            List<CAccesos> listAccesos = new List<CAccesos>();
+            // string correEnv = "", Html = "";
+
+            SqlConnection cn = con.conexion();
+            cn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_LISTACCESO", cn);
+            DataTable dt = new DataTable();
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dap.SelectCommand.Parameters.AddWithValue("@Dni", dni);
 
             dap.Fill(dt);
             cn.Close();
@@ -169,31 +273,28 @@ namespace WebServiceExtNet
             if (dt != null)
             {
 
-                correEnv = dt.Rows[0]["c_correo"].ToString();
-                Html = dt.Rows[0]["c_html"].ToString();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    int nivel1 = Convert.ToInt32(dt.Rows[i]["n_nivel1"]);
+                    int nivel2 = Convert.ToInt32(dt.Rows[i]["n_nivel2"]);
+                    int nivel3 = Convert.ToInt32(dt.Rows[i]["n_nivel3"]);
+                    int nivel4 = Convert.ToInt32(dt.Rows[i]["n_nivel4"]);
+                    int nivel5 = Convert.ToInt32(dt.Rows[i]["n_nivel5"]);
+                    int nivelGN = Convert.ToInt32(dt.Rows[i]["n_nivelGN"]);
+                    string descripcion = Convert.ToString(dt.Rows[i]["c_descripcion"]);
+                    CAccesos ac = new CAccesos(nivel1, nivel2, nivel3, nivel4, nivel5, descripcion, nivelGN);
 
+                    listAccesos.Add(ac);
+
+                }
+
+                   
             }
 
-          
-
-            SmtpClient client = new SmtpClient();
-            client.Port = 465;
-            client.Host = "smtp.gmail.com";
-            client.EnableSsl = false;
-            client.Timeout = 15000;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("acmenconle.info@gmail.com", "probando123");
-
-
-            MailMessage mm = new MailMessage("acmenconle.info@gmail.com", correEnv, "Confirmación de pago", Html);
-            mm.IsBodyHtml = true;
-
-            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-
-            client.Send(mm);
-
+            return listAccesos.ToArray();
+        
         }
+        
         #endregion
     }
 }

@@ -11,10 +11,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/WebServiceExtNet.dll">
-      <publishTime>05/23/2017 19:13:35</publishTime>
+      <publishTime>05/24/2017 17:03:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/23/2017 19:13:35</publishTime>
+      <publishTime>05/24/2017 17:03:49</publishTime>
     </File>
     <File Include="WSExtraNet.asmx">
       <publishTime>05/22/2017 15:10:04</publishTime>

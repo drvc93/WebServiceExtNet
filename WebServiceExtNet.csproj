@@ -63,8 +63,10 @@
     <Content Include="WSExtraNet.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAccesos.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Constantes.cs" />
+    <Compile Include="CUsuario.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WSExtraNet.asmx.cs">
