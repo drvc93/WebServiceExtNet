@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -251,6 +252,67 @@ namespace WebServiceExtNet
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
             client.Send(mm);
+        }
+
+
+        [WebMethod]
+        public string HtmlPortalApp() {
+            string resulthtml = "";
+
+            String BodyHtml = "", HeadHtml = "", FotHtml = "";
+            SqlConnection cn = con.conexion();
+            cn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVL_LISTAPAGEINICIO", cn);
+            DataTable dt = new DataTable();
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            //dap.SelectCommand.Parameters.AddWithValue("@Dni", dni);
+            
+            dap.Fill(dt);
+            cn.Close();
+
+            if (dt != null)
+            {
+                HeadHtml = "<!DOCTYPE html><html lang='en-us'><head><style>.divresp {float: left; margin: 10px; padding: 10px; max-width: 95%;height: 100%;border: 1px solid white;margin-right: 10px;width: 95%}" +
+                            "</style></head><body><br><div class='divresp'><table>";
+                FotHtml = "  </table></div></body></html>";
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string HtmlSeccion = "";
+
+                    string imgBase64 = "";
+                    string stittulo = "";
+                    string sdetalle = "";
+                    string rutaimg = "";
+
+
+                    stittulo = dt.Rows[i]["c_htmlTit"].ToString();
+                    sdetalle = dt.Rows[i]["c_htmlDesc"].ToString();
+                    rutaimg = dt.Rows[i]["c_foto1"].ToString();
+                   // Bitmap b = new Bitmap(@"\\Ibserver_1\servidor de archivos\Fotos\LWP2040P-web.jpg");
+                    Bitmap b = new Bitmap(@"E:\Fotos\AFL116.jpg");
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                    b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] byteImage = ms.ToArray();
+                    imgBase64 = Convert.ToBase64String(byteImage);
+
+                    HtmlSeccion =  " <td><tr >  <p style='font-weight: bold' >"+stittulo+"</p> </tr> </td>";
+                    HtmlSeccion = HtmlSeccion + "<td><tr >  "+sdetalle+"</tr></td>";
+                    HtmlSeccion = HtmlSeccion + "<td> <tr ><img  style='height: 100%; width: 100%; object-fit: contain' src='data:image/jpeg;base64,"+imgBase64+"' /></tr></td>";
+                    BodyHtml = BodyHtml + HtmlSeccion;
+
+                }
+
+                resulthtml = HeadHtml + BodyHtml + FotHtml;
+
+            }
+
+
+
+
+            return resulthtml;
+        
+
         }
 
         [WebMethod]
