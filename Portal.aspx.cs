@@ -70,7 +70,8 @@ namespace WebServiceExtNet
                     BodyHtml = BodyHtml + HtmlSeccion;*/
 
                 }
-
+                
+               //  lblHeader.Text = "PROMOCIONES DEL DÍA " + DateTime.Now.ToShortDateString();
                 repeatHtml.DataSource = dt;
                 repeatHtml.DataBind();
             }

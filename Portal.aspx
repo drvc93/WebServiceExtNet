@@ -9,15 +9,21 @@
             .divresp {float: left; margin: 10px; padding: 10px; max-width: 95%;height: 100%;border: 1px solid white;margin-right: 10px;width: 95%}   
         </style>
     </head>
-    <body>
-        <asp:Label ID="lblHeader" ForeColor="Black" Text ="Promociones del dia 25/05/2017" Font-Bold="true" Font-Size="12" Font-Italic="true" runat="server"></asp:Label>
-                      
-        <form id="form1" runat="server">
+    <body style="width:100%;" >
+                    
+        <form id="form1" runat="server" style="width:100%;" >
             <div class="divresp">
                 <asp:Repeater ID="repeatHtml" runat="server">
                     <HeaderTemplate>
                         
-                        <table>
+                        <table style="width:100%;" >
+                            <tr>
+                                <td>
+                                     <asp:Label ID="txtHeader"  Width="100%" style = "text-align:center"  ForeColor="Black" Text = '<%#"PROMOCION DEL DÍA " + DateTime.Now.ToShortDateString()  %>' Font-Bold="true" Font-Size="12" Font-Italic="true" runat="server"></asp:Label>
+         
+                                </td>
+                            </tr>
+                            
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>

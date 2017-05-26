@@ -10,14 +10,20 @@
         </style>
     </head>
     <body>
-        <asp:Label ID="lblHeader" ForeColor="Black" Text ="Promociones del dia 25/05/2017" Font-Bold="true" Font-Size="12" Font-Italic="true" runat="server"></asp:Label>
-                      
+                    
         <form id="form1" runat="server">
             <div class="divresp">
                 <asp:Repeater ID="repeatHtml" runat="server">
                     <HeaderTemplate>
                         
                         <table>
+                            <tr>
+                                <td>
+                                     <asp:Label ID="txtHeader"  Width="100%" style = "text-align:center"  ForeColor="Black" Text = '<%#"PROMOCION DEL DÍA " + DateTime.Now.ToShortDateString()  %>' Font-Bold="true" Font-Size="12" Font-Italic="true" runat="server"></asp:Label>
+         
+                                </td>
+                            </tr>
+                            
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
