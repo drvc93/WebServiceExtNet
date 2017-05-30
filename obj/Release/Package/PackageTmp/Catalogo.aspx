@@ -52,6 +52,12 @@
                             <asp:Label ID="Label2" Width="100%"  style="text-align:center"  runat="server" Text='<%#  " Tipo : " +Eval("c_tipo").ToString() %>' Font-Bold="true"></asp:Label>
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <td>
+                            <img id="Img1"  style=' border-radius:10%; width: 100%; object-fit: contain'  runat="server"  src='<%# Eval("c_imagbase64") %>' />
+                        </td>
+                    </tr>
                 </ItemTemplate>
 
                 <FooterTemplate>

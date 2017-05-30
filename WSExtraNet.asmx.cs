@@ -13,7 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-    [WebService(Namespace = "http://100.100.100.237:8030/")]
+  //  [WebService(Namespace = "http://100.100.100.237:8030/")]
+     [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
@@ -173,8 +174,12 @@ namespace WebServiceExtNet
             }
 
             if (res == "OK")
+
             {
-               // this.EnviarCorreoInfo(correlativo);
+                
+                    res = this.EnviarCorreoInfo(tipo,correlativo);
+                
+
             }
 
             return res;
@@ -185,7 +190,7 @@ namespace WebServiceExtNet
         {
             List<CUsuario> listaUsuarios = new List<CUsuario>();
             string SqL = "SELECT c_dni, c_clave, c_nombre, c_apellido, d_fechaNac, c_mail, c_telefono, c_emprRuc, c_emprNom " +
-                         " FROM MVE_USUARIO where c_dni = '" + user + "' and c_clave = '" + clave + "'";
+                         " FROM co_mve_usuario where c_dni = '" + user + "' and c_clave = '" + clave + "'";
             SqlConnection cn = con.conexion();
             cn.Open();
             SqlDataAdapter dap = new SqlDataAdapter(SqL, cn);
@@ -217,41 +222,64 @@ namespace WebServiceExtNet
             return listaUsuarios.ToArray();
         }
 
-        public void EnviarCorreoInfo(int correlativo)
+        public string  EnviarCorreoInfo( string  tipo , int correlativo)
         {
             string correEnv = "", Html = "";
-
-            SqlConnection cn = con.conexion();
-            cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_GENERAR_HTML_CORREOINFOAPP", cn);
-            DataTable dt = new DataTable();
-            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dap.SelectCommand.Parameters.AddWithValue("@Correlativo", correlativo);
-
-            dap.Fill(dt);
-            cn.Close();
-
-            if (dt != null)
+            string resulmail="";
+            string SP_FINAL = "";
+            string ASUNTO = "";
+            if (tipo == "RU")
             {
-                correEnv = dt.Rows[0]["c_correo"].ToString();
-                Html = dt.Rows[0]["c_html"].ToString();
+                SP_FINAL = "SP_CO_GENERAR_HTML_CORREOINFOAPP";
+                ASUNTO= "Datos de accesso";
+            }
+            else if (tipo=="EQ")
+            {
+                SP_FINAL = "SP_CO_GENERAR_HTML_CORREOINFOQR";
+                ASUNTO = "Se registro su codigo QR";
+            }
+            try
+            {
+                SqlConnection cn = con.conexion();
+                cn.Open();
+                SqlDataAdapter dap = new SqlDataAdapter(SP_FINAL, cn);
+                DataTable dt = new DataTable();
+                dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dap.SelectCommand.Parameters.AddWithValue("@Correlativo", correlativo);
+
+                dap.Fill(dt);
+                cn.Close();
+
+                if (dt != null)
+                {
+                    correEnv = dt.Rows[0]["c_correo"].ToString();
+                    Html = dt.Rows[0]["c_html"].ToString();
+                }
+
+                SmtpClient client = new SmtpClient();
+                client.Port = 25;
+                client.Host = "100.100.100.7";//"filtroslys.com.pe";//"smtp.gmail.com";
+                client.EnableSsl = false;
+                client.Timeout = 15000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential("sistemas", "@tis22pz.");
+
+                MailMessage mm = new MailMessage("sistemas@filtroslys.com.pe", correEnv, "Datos de accesso", Html);
+                mm.IsBodyHtml = true;
+
+                mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                client.Send(mm);
+                resulmail = "OK";
+            }
+            catch (Exception e)
+            {
+
+                resulmail = e.Message;
             }
 
-            SmtpClient client = new SmtpClient();
-            client.Port = 25;
-            client.Host = "100.100.100.7";//"smtp.gmail.com";
-            client.EnableSsl = true;
-            client.Timeout = 15000;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("", "");
-
-            MailMessage mm = new MailMessage("dvillanueva@filtroslys.com.pe", correEnv, "Confirmación de pago", Html);
-            mm.IsBodyHtml = true;
-
-            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-
-            client.Send(mm);
+            return resulmail;
         }
 
 
