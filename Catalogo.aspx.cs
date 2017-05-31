@@ -12,6 +12,7 @@ namespace WebServiceExtNet
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        public DataTable Fdt;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -39,6 +40,7 @@ namespace WebServiceExtNet
 
             if (dt != null)
             {
+                Fdt = dt;
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -47,9 +49,11 @@ namespace WebServiceExtNet
                     string rutaimg = "";
                     
                     rutaimg = dt.Rows[i]["c_rutafoto"].ToString();
+                    rutaimg = @Constantes.CarpetaFotos+sfilro+".jpg";
                     if (System.IO.File.Exists(rutaimg))
                     {
-                        //  Bitmap b = new Bitmap(@"\\Ibserver_1\servidor de archivos\Fotos\LWP2040P-web.jpg");
+                        // Bitmap b = new Bitmap(@"\\IBSERVER_1\Servidor de Archivos\Fotos\L17.jpg");
+                       // Bitmap b = new Bitmap(rutaimg);
                         Bitmap b = new Bitmap(rutaimg);
                         System.IO.MemoryStream ms = new System.IO.MemoryStream();
                         b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);

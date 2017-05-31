@@ -13,8 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-  //  [WebService(Namespace = "http://100.100.100.237:8030/")]
-     [WebService(Namespace = "http://190.187.181.57:8030/")]
+    //[WebService(Namespace = "http://100.100.100.237:8030/")]
+   [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
@@ -383,6 +383,44 @@ namespace WebServiceExtNet
 
             return listAccesos.ToArray();
         
+        }
+
+        [WebMethod] 
+        public string VerificarCatalogo(string sfilro)
+        {
+            string resul = "N";
+            Conexion con = new Conexion();
+            // String BodyHtml = "", HeadHtml = "", FotHtml = "";
+            SqlConnection cn = con.conexion();
+            cn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_CATALOGOLYS", cn);
+            DataTable dt = new DataTable();
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dap.SelectCommand.Parameters.AddWithValue("@Item", sfilro);
+
+            dap.Fill(dt);
+            cn.Close();
+
+            if (dt == null)
+            {
+                resul = "N";
+
+                
+
+            }
+            else if (dt.Rows.Count <= 0) {
+
+                resul = "N";
+            }
+            else if (dt.Rows.Count > 0) {
+
+                resul = "S";
+                return resul;
+
+            }
+
+            return resul;
+
         }
         
         #endregion

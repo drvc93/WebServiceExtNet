@@ -28,12 +28,12 @@
                     <ItemTemplate>
                         <tr>
                             <td style="color: white; background-color:red ;padding:5% ;border-radius:10px; " >
-                                <asp:Label Width="100%"  style="text-align:center"  runat="server" Text='<%# Eval("c_htmlTit") %>' Font-Bold="true"></asp:Label>
+                                <asp:Label Width="100%"  Font-Size="Larger" style="text-align:center"  runat="server" Text='<%# Eval("c_htmlTit") %>' Font-Bold="true"></asp:Label>
                             </td>
                         </tr>
                         <tr>
                             <td style="color: #000000; background-color:#E5E5E5 ;padding:5% ;border-radius:10px; " >
-                                <asp:Label Width="100%" style="text-align:center"   ID="Label1"  runat="server" Text='<%# Eval("c_htmlDesc") %>' ></asp:Label>
+                                <asp:Label Width="100%"  Font-Size="Larger" style="text-align:center"   ID="Label1"  runat="server" Text='<%# Eval("c_htmlDesc") %>' ></asp:Label>
                             </td>
                         </tr>
                         <tr>

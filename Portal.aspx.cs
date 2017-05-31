@@ -47,6 +47,7 @@ namespace WebServiceExtNet
                     string stittulo = "";
                     string sdetalle = "";
                     string rutaimg = "";
+                   
 
 
                     stittulo = dt.Rows[i]["c_htmlTit"].ToString();
@@ -54,8 +55,8 @@ namespace WebServiceExtNet
                     rutaimg = dt.Rows[i]["c_foto1"].ToString();
                     stittulo = stittulo.ToUpper();
                     sdetalle=sdetalle.ToUpper();
-                  //  Bitmap b = new Bitmap(@"\\Ibserver_1\servidor de archivos\Fotos\LWP2040P-web.jpg");
-                    Bitmap b = new Bitmap(rutaimg);
+                  //  Bitmap b = new Bitmap(@"\\IBSERVER_1\Servidor de Archivos\Fotos\L17.jpg");
+                     Bitmap b = new Bitmap(rutaimg);
                     System.IO.MemoryStream ms = new System.IO.MemoryStream();
                     b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] byteImage = ms.ToArray();
