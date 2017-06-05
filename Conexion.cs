@@ -33,6 +33,21 @@ namespace WebServiceExtNet
             return new SqlConnection(Conn);
         }
 
+        public SqlConnection conexionLys()
+        {
+            // Conn = Constantes.ConexionString;
+
+            string userdb = System.Configuration.ConfigurationManager.AppSettings["UserDB"];
+            string password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+            string DB = System.Configuration.ConfigurationManager.AppSettings["DBLys"];
+            string server = System.Configuration.ConfigurationManager.AppSettings["Server"];
+
+            Conn = "data source = " + server + "; initial catalog = " + DB + "; user id = " + userdb + "; password =" + password;
+
+
+            return new SqlConnection(Conn);
+        }
+
         
     }
 }

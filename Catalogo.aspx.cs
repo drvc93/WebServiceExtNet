@@ -28,9 +28,9 @@ namespace WebServiceExtNet
         { 
             Conexion con = new Conexion();
             // String BodyHtml = "", HeadHtml = "", FotHtml = "";
-            SqlConnection cn = con.conexion();
+            SqlConnection cn = con.conexionLys();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_CATALOGOLYS", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPCATALOGOLYS", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Item", sfilro);
@@ -49,12 +49,15 @@ namespace WebServiceExtNet
                     string rutaimg = "";
                     
                     rutaimg = dt.Rows[i]["c_rutafoto"].ToString();
+                   // rutaimg = @"\\100.100.100.1\\spring\\Planillas\\ROYALOGO.BMP";
                     rutaimg = @Constantes.CarpetaFotos+sfilro+".jpg";
-                    if (System.IO.File.Exists(rutaimg))
+                   // rutaimg = Server.MapPath("~/Fotos") + "\\" + sfilro + ".jpg";
+                    //rutaimg = Constantes.CarpetaFotos+sfilro+".jpg";
+                    if (System.IO.File.Exists(@rutaimg))
                     {
-                        // Bitmap b = new Bitmap(@"\\IBSERVER_1\Servidor de Archivos\Fotos\L17.jpg");
-                       // Bitmap b = new Bitmap(rutaimg);
+                        // Bitmap b = new Bitmap(@"\\IBSERVER_1\\Servidor de Archivos\\Fotos\\L50.jpg");
                         Bitmap b = new Bitmap(rutaimg);
+                       // Bitmap b = new Bitmap(@"E:\Fotos\L50.jpg");
                         System.IO.MemoryStream ms = new System.IO.MemoryStream();
                         b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                         byte[] byteImage = ms.ToArray();

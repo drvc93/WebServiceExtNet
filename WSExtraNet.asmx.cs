@@ -13,7 +13,7 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-    //[WebService(Namespace = "http://100.100.100.237:8030/")]
+   /// [WebService(Namespace = "http://100.100.100.237:8030/")]
    [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
@@ -36,8 +36,8 @@ namespace WebServiceExtNet
         {
             string sql, result = "";
             int cont = 0;
-            sql = "SELECT count(*) n_count FROM TBC_USUARIO where v_dni = '" + dni + "'";
-            SqlConnection cn = con.conexion();
+            sql = "SELECT count(*) n_count FROM co_mve_usuario where c_dni = '" + dni + "'";
+            SqlConnection cn = con.conexionLys();
             cn.Open();
             SqlDataAdapter dap = new SqlDataAdapter(sql, cn);
             DataTable dt = new DataTable();
@@ -77,7 +77,7 @@ namespace WebServiceExtNet
             try
             {
                 SqlConnection cn = con.conexion();
-                SqlCommand sqlcmd = new SqlCommand("SP_CO_INSERTUSERAPP", cn);
+                SqlCommand sqlcmd = new SqlCommand("UP_MVE_INSERTUSERAPP", cn);
                 sqlcmd.Connection = cn;
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
@@ -95,10 +95,9 @@ namespace WebServiceExtNet
                 sqlcmd.Parameters.Add(par);
                 sqlrows = sqlcmd.ExecuteNonQuery();
 
-                if (sqlrows > 0)
-                {
+               
                     res = Convert.ToString(sqlcmd.Parameters["@IdReg"].Value);
-                }
+                
             }
             catch (Exception e)
             {
@@ -117,7 +116,7 @@ namespace WebServiceExtNet
             try
             {
                 SqlConnection cn = con.conexion();
-                SqlCommand sqlcmd = new SqlCommand("SP_CO_INSERT_CODIGOQR", cn);
+                SqlCommand sqlcmd = new SqlCommand("UP_MVE_INSERT_CODIGOQR", cn);
                 sqlcmd.Connection = cn;
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
@@ -133,10 +132,9 @@ namespace WebServiceExtNet
                 sqlcmd.Parameters.Add(par);
                 sqlrows = sqlcmd.ExecuteNonQuery();
 
-                if (sqlrows > 0)
-                {
+               
                     res = Convert.ToString(sqlcmd.Parameters["@IdReg"].Value);
-                }
+                
             }
             catch (Exception e)
             {
@@ -185,13 +183,64 @@ namespace WebServiceExtNet
             return res;
         }
 
+
+        [WebMethod]
+        public string ValidarLogin(string user, string clave)
+        {
+            string res = "-99";
+            int sqlrows;
+            try
+            {
+                SqlConnection cn = con.conexion();
+                SqlCommand sqlcmd = new SqlCommand("UP_MVE_GETVALLOGEO", cn);
+                sqlcmd.Connection = cn;
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+
+                sqlcmd.Parameters.AddWithValue("@Dni", user);
+                sqlcmd.Parameters.AddWithValue("@Clave", clave);
+                SqlParameter par = new SqlParameter("@Msg", SqlDbType.Int);
+                par.Direction = ParameterDirection.Output;
+                //par.Size = 500;
+                sqlcmd.Parameters.Add(par);
+                sqlrows = sqlcmd.ExecuteNonQuery();
+                res = sqlcmd.Parameters["@Msg"].Value.ToString();
+
+                switch (res) 
+                { 
+                
+                    case "-1":
+                        res = "Usuario no Existe.";
+                        break;
+                    case "-2":
+                         res = "Clave incorrecta.";
+                        break;
+                    case "-3":
+                        res = "Usuario Inactivo.";
+                        break;
+                    case "0":
+                    res = "OK";
+                        break;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                res = e.Message;
+            }
+
+            return res;
+
+        }
+
         [WebMethod]
         public CUsuario[] AutenticarLogin(string user, string clave)
         {
             List<CUsuario> listaUsuarios = new List<CUsuario>();
             string SqL = "SELECT c_dni, c_clave, c_nombre, c_apellido, d_fechaNac, c_mail, c_telefono, c_emprRuc, c_emprNom " +
-                         " FROM co_mve_usuario where c_dni = '" + user + "' and c_clave = '" + clave + "'";
-            SqlConnection cn = con.conexion();
+                         " FROM co_mve_usuario where c_dni = '" + user + "'";
+            SqlConnection cn = con.conexionLys();
             cn.Open();
             SqlDataAdapter dap = new SqlDataAdapter(SqL, cn);
             DataTable dt = new DataTable();
@@ -230,12 +279,12 @@ namespace WebServiceExtNet
             string ASUNTO = "";
             if (tipo == "RU")
             {
-                SP_FINAL = "SP_CO_GENERAR_HTML_CORREOINFOAPP";
+                SP_FINAL = "UP_MVE_HTMLCORREOUSER";
                 ASUNTO= "Datos de accesso";
             }
             else if (tipo=="EQ")
             {
-                SP_FINAL = "SP_CO_GENERAR_HTML_CORREOINFOQR";
+                SP_FINAL = "UP_MVE_HTMLCORREOINFOQR";
                 ASUNTO = "Se registro su codigo QR";
             }
             try
@@ -265,7 +314,7 @@ namespace WebServiceExtNet
                 client.UseDefaultCredentials = false;
                 client.Credentials = new System.Net.NetworkCredential("sistemas", "@tis22pz.");
 
-                MailMessage mm = new MailMessage("sistemas@filtroslys.com.pe", correEnv, "Datos de accesso", Html);
+                MailMessage mm = new MailMessage("sistemas@filtroslys.com.pe", correEnv, ASUNTO, Html);
                 mm.IsBodyHtml = true;
 
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
@@ -290,7 +339,7 @@ namespace WebServiceExtNet
             String BodyHtml = "", HeadHtml = "", FotHtml = "";
             SqlConnection cn = con.conexion();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVL_LISTAPAGEINICIO", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPLISTAPAGEINICIO", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             //dap.SelectCommand.Parameters.AddWithValue("@Dni", dni);
@@ -350,9 +399,9 @@ namespace WebServiceExtNet
             List<CAccesos> listAccesos = new List<CAccesos>();
             // string correEnv = "", Html = "";
 
-            SqlConnection cn = con.conexion();
+            SqlConnection cn = con.conexionLys();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_LISTACCESO", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_LISTACCESOAPP", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Dni", dni);
@@ -391,9 +440,9 @@ namespace WebServiceExtNet
             string resul = "N";
             Conexion con = new Conexion();
             // String BodyHtml = "", HeadHtml = "", FotHtml = "";
-            SqlConnection cn = con.conexion();
+            SqlConnection cn = con.conexionLys();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_CATALOGOLYS", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPCATALOGOLYS", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Item", sfilro);

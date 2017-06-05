@@ -25,9 +25,9 @@ namespace WebServiceExtNet
 
             Conexion con = new Conexion();
             // String BodyHtml = "", HeadHtml = "", FotHtml = "";
-            SqlConnection cn = con.conexion();
+            SqlConnection cn = con.conexionLys();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVL_LISTAPAGEINICIO", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPLISTAPAGEINICIO", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             //dap.SelectCommand.Parameters.AddWithValue("@Dni", dni);

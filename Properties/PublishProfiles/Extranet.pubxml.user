@@ -11,7 +11,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/WebServiceExtNet.dll">
-      <publishTime>05/31/2017 16:58:37</publishTime>
+      <publishTime>06/05/2017 17:12:18</publishTime>
     </File>
     <File Include="Catalogo.aspx">
       <publishTime>05/31/2017 12:06:27</publishTime>
@@ -20,7 +20,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/31/2017 09:35:31</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/31/2017 16:58:37</publishTime>
+      <publishTime>06/05/2017 17:12:20</publishTime>
     </File>
     <File Include="WSExtraNet.asmx">
       <publishTime>05/22/2017 15:10:04</publishTime>
