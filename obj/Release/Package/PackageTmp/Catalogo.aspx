@@ -77,7 +77,7 @@
                             </td>
                         </tr>
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_1").ToString() +"  " +Eval("c_val_1").ToString() %>'></asp:Label> 
 
@@ -86,7 +86,7 @@
 
                         </tr>
                          <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label3" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_2").ToString() +"  " +Eval("c_val_2").ToString() %>'></asp:Label> 
 
@@ -95,7 +95,7 @@
 
                         </tr>
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label4" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_3").ToString() +"   " +Eval("c_val_3").ToString() %>'></asp:Label> 
 
@@ -104,7 +104,7 @@
 
                         </tr>
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label5" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_4").ToString() +"  " +Eval("c_val_4").ToString() %>'></asp:Label> 
 
@@ -114,7 +114,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label6" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_5").ToString() +"  " +Eval("c_val_5").ToString() %>'></asp:Label> 
 
@@ -124,7 +124,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label7" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_6").ToString() +"  " +Eval("c_val_6").ToString() %>'></asp:Label> 
 
@@ -134,7 +134,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label8" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_7").ToString() +"  " +Eval("c_val_7").ToString() %>'></asp:Label> 
 
@@ -144,7 +144,7 @@
                         </tr>
                         
                        <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label9" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_8").ToString() +"  " +Eval("c_val_8").ToString() %>'></asp:Label> 
 
@@ -154,7 +154,7 @@
                        </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label10" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_9").ToString() +"  " +Eval("c_val_9").ToString() %>'></asp:Label> 
 
@@ -164,7 +164,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label11" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_10").ToString() +"  " +Eval("c_val_10").ToString() %>'></asp:Label> 
 
@@ -174,7 +174,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label12" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_11").ToString() +"  " +Eval("c_val_11").ToString() %>'></asp:Label> 
 
@@ -184,7 +184,7 @@
                         </tr>
                         
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label13" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_12").ToString() +"  " +Eval("c_val_12").ToString() %>'></asp:Label> 
 
@@ -194,7 +194,7 @@
                         </tr>
 
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label14" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_13").ToString() +"  " +Eval("c_val_13").ToString() %>'></asp:Label> 
 
@@ -203,7 +203,7 @@
 
                         </tr>
                         <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:15px;">
+                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label15" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_14").ToString() +"  " +Eval("c_val_14").ToString() %>'></asp:Label> 
 

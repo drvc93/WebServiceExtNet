@@ -56,15 +56,17 @@ namespace WebServiceExtNet
                     stittulo = stittulo.ToUpper();
                     sdetalle=sdetalle.ToUpper();
                   //  Bitmap b = new Bitmap(@"\\IBSERVER_1\Servidor de Archivos\Fotos\L17.jpg");
-                     Bitmap b = new Bitmap(rutaimg);
-                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                    b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    byte[] byteImage = ms.ToArray();
-                    imgBase64 = Convert.ToBase64String(byteImage);
+                    if (System.IO.File.Exists(@rutaimg))
+                    {
+                        Bitmap b = new Bitmap(rutaimg);
+                        System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                        b.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        byte[] byteImage = ms.ToArray();
+                        imgBase64 = Convert.ToBase64String(byteImage);
 
-                    dt.Rows[i][11] = "data:image/jpeg;base64,"+ imgBase64;
-                    dt.AcceptChanges();
-
+                        dt.Rows[i][11] = "data:image/jpeg;base64," + imgBase64;
+                        dt.AcceptChanges();
+                    }
                     /*HtmlSeccion = " <td><tr >  <p style='font-weight: bold' >" + stittulo + "</p> </tr> </td>";
                     HtmlSeccion = HtmlSeccion + "<td><tr >  " + sdetalle + "</tr></td>";
                     HtmlSeccion = HtmlSeccion + "<td> <tr ><img  style='height: 100%; width: 100%; object-fit: contain' src='data:image/jpeg;base64," + imgBase64 + "' /></tr></td>";

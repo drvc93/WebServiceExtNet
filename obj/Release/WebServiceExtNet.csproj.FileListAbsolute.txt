@@ -4,3 +4,5 @@ D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.cs
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.dll
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.pdb
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Release\WebServiceExtNet.dll.licenses
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\Telerik.Web.UI.dll
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\Telerik.Web.UI.xml

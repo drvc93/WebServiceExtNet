@@ -4,3 +4,5 @@ D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Debug\WebServiceExtNet.dll.
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Debug\WebServiceExtNet.dll
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Debug\WebServiceExtNet.pdb
 D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\obj\Debug\WebServiceExtNet.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\Telerik.Web.UI.dll
+D:\DVILLANUEVA\WebServiceExtNet\WebServiceExtNet\bin\Telerik.Web.UI.xml

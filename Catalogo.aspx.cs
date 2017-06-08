@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,9 +51,10 @@ namespace WebServiceExtNet
                     
                     rutaimg = dt.Rows[i]["c_rutafoto"].ToString();
                    // rutaimg = @"\\100.100.100.1\\spring\\Planillas\\ROYALOGO.BMP";
-                    rutaimg = @Constantes.CarpetaFotos+sfilro+".jpg";
-                   // rutaimg = Server.MapPath("~/Fotos") + "\\" + sfilro + ".jpg";
+                    //rutaimg = @Constantes.CarpetaFotos+sfilro+".jpg";
+                   rutaimg = Server.MapPath("~/Fotos") + "\\" + sfilro + ".jpg";
                     //rutaimg = Constantes.CarpetaFotos+sfilro+".jpg";
+                    CopyFile(rutaimg);
                     if (System.IO.File.Exists(@rutaimg))
                     {
                         // Bitmap b = new Bitmap(@"\\IBSERVER_1\\Servidor de Archivos\\Fotos\\L50.jpg");
@@ -75,6 +77,12 @@ namespace WebServiceExtNet
             
             }
         
+        }
+
+        public void CopyFile(string  rutaimg)
+        {
+
+          // File.Copy(rutaimg, @"E:\"+DateTime.Now.ToString("hh_mm_ss")+".jpg");
         }
     }
 }

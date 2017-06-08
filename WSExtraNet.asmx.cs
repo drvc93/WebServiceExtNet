@@ -13,7 +13,7 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-   /// [WebService(Namespace = "http://100.100.100.237:8030/")]
+   //[WebService(Namespace = "http://100.100.100.237:8030/")]
    [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
@@ -306,15 +306,15 @@ namespace WebServiceExtNet
                 }
 
                 SmtpClient client = new SmtpClient();
-                client.Port = 25;
-                client.Host = "100.100.100.7";//"filtroslys.com.pe";//"smtp.gmail.com";
+                client.Port = Constantes.PuertoSMTP;
+                client.Host = Constantes.HostSMPT;//"filtroslys.com.pe";//"smtp.gmail.com";
                 client.EnableSsl = false;
-                client.Timeout = 15000;
+                client.Timeout = Constantes.TimeOutMail;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential("sistemas", "@tis22pz.");
+                client.Credentials = new System.Net.NetworkCredential(Constantes.UserCorreo, Constantes.Password);
 
-                MailMessage mm = new MailMessage("sistemas@filtroslys.com.pe", correEnv, ASUNTO, Html);
+                MailMessage mm = new MailMessage(Constantes.Correo, correEnv, ASUNTO, Html);
                 mm.IsBodyHtml = true;
 
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;

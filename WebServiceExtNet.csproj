@@ -55,10 +55,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Web.UI, Version=2016.2.504.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2016\Bin45\Telerik.Web.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Portal.aspx" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="ReportePuntos.aspx" />
     <Content Include="WSExtraNet.asmx" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +86,13 @@
     </Compile>
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportePuntos.aspx.cs">
+      <DependentUpon>ReportePuntos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportePuntos.aspx.designer.cs">
+      <DependentUpon>ReportePuntos.aspx</DependentUpon>
     </Compile>
     <Compile Include="WSExtraNet.asmx.cs">
       <DependentUpon>WSExtraNet.asmx</DependentUpon>
