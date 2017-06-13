@@ -79,6 +79,18 @@ namespace WebServiceExtNet
         
         }
 
+        public bool VisibleHtml(string sValue) {
+
+            if (sValue == "" || String.IsNullOrEmpty(sValue))
+            {
+
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
         public void CopyFile(string  rutaimg)
         {
 

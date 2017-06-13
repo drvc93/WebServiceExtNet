@@ -6,7 +6,7 @@
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <style>
-            .divresp {float: left; margin: 10px; padding: 10px; max-width: 95%;height: 100%;border: 1px solid white;margin-right: 10px;width: 95%}   
+            .divresp {float: left; margin: 10px;  max-width: 95%;height: 100%;border: 1px solid white;margin-right: 10px;width: 95%}   
             .Relieve {
             box-shadow: inset 3px 3px 3px rgba(255,255,255,.7), inset -2px -2px 3px rgba(0,0,0,.1), 2px 2px 10px rgba(0,0,0,.1);
             width: 95%;  /* Ancho del botón */
@@ -76,16 +76,16 @@
                                
                             </td>
                         </tr>
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_1").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
-                                   <asp:Label runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_1").ToString() +"  " +Eval("c_val_1").ToString() %>'></asp:Label> 
+                                   <asp:Label runat="server" Font-Size="Large"  Text='<%#   Eval("c_des_1").ToString() +"  " +Eval("c_val_1").ToString() %>'></asp:Label> 
 
                                </strong>
                             </td>
 
                         </tr>
-                         <tr >
+                         <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_2").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label3" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_2").ToString() +"  " +Eval("c_val_2").ToString() %>'></asp:Label> 
@@ -94,7 +94,7 @@
                             </td>
 
                         </tr>
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_3").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label4" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_3").ToString() +"   " +Eval("c_val_3").ToString() %>'></asp:Label> 
@@ -103,7 +103,7 @@
                             </td>
 
                         </tr>
-                        <tr >
+                        <tr  runat="server" visible= '<%# VisibleHtml(Eval("c_des_4").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label5" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_4").ToString() +"  " +Eval("c_val_4").ToString() %>'></asp:Label> 
@@ -113,7 +113,7 @@
 
                         </tr>
 
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_5").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label6" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_5").ToString() +"  " +Eval("c_val_5").ToString() %>'></asp:Label> 
@@ -123,7 +123,7 @@
 
                         </tr>
 
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_6").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label7" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_6").ToString() +"  " +Eval("c_val_6").ToString() %>'></asp:Label> 
@@ -133,8 +133,8 @@
 
                         </tr>
 
-                        <tr >
-                            <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
+                        <tr  runat="server" visible= '<%# VisibleHtml(Eval("c_des_7").ToString()) %>' >
+                            <td  style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label8" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_7").ToString() +"  " +Eval("c_val_7").ToString() %>'></asp:Label> 
 
@@ -143,7 +143,7 @@
 
                         </tr>
                         
-                       <tr >
+                       <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_8").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label9" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_8").ToString() +"  " +Eval("c_val_8").ToString() %>'></asp:Label> 
@@ -153,7 +153,7 @@
 
                        </tr>
 
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_9").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label10" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_9").ToString() +"  " +Eval("c_val_9").ToString() %>'></asp:Label> 
@@ -163,7 +163,7 @@
 
                         </tr>
 
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_10").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label11" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_10").ToString() +"  " +Eval("c_val_10").ToString() %>'></asp:Label> 
@@ -173,7 +173,7 @@
 
                         </tr>
 
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_11").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label12" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_11").ToString() +"  " +Eval("c_val_11").ToString() %>'></asp:Label> 
@@ -183,7 +183,7 @@
 
                         </tr>
                         
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_12").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label13" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_12").ToString() +"  " +Eval("c_val_12").ToString() %>'></asp:Label> 
@@ -193,7 +193,7 @@
 
                         </tr>
 
-                        <tr >
+                        <tr id="Tr1" runat="server" visible= '<%# VisibleHtml(Eval("c_des_13").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label14" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_13").ToString() +"  " +Eval("c_val_13").ToString() %>'></asp:Label> 
@@ -202,7 +202,7 @@
                             </td>
 
                         </tr>
-                        <tr >
+                        <tr runat="server" visible= '<%# VisibleHtml(Eval("c_des_14").ToString()) %>' >
                             <td style="width:100%;color:white;background-color:#FC312C;border-radius:5px;">
                                <strong style="margin-left:10px"> 
                                    <asp:Label ID="Label15" runat="server" Font-Size="Large"  Text='<%#  Eval("c_des_14").ToString() +"  " +Eval("c_val_14").ToString() %>'></asp:Label> 

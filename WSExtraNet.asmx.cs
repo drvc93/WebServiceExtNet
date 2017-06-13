@@ -13,8 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-   //[WebService(Namespace = "http://100.100.100.237:8030/")]
-   [WebService(Namespace = "http://190.187.181.57:8030/")]
+ //[WebService(Namespace = "http://100.100.100.237:8030/")]
+  [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
