@@ -19,6 +19,7 @@ namespace WebServiceExtNet
             if (!this.IsPostBack)
             {
                 string filtro =  Request.QueryString["item"];
+                //string dni = 
                 filtro = filtro.Trim().ToUpper();
                 this.LoadCatalogo(filtro);
             }
@@ -29,9 +30,9 @@ namespace WebServiceExtNet
         { 
             Conexion con = new Conexion();
             // String BodyHtml = "", HeadHtml = "", FotHtml = "";
-            SqlConnection cn = con.conexionLys();
+            SqlConnection cn = con.conexion();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPCATALOGOLYS", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_CATALOGOLYS", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Item", sfilro);

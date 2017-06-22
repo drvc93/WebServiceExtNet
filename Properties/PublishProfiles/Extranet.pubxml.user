@@ -12,16 +12,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Telerik.Web.UI.dll">
-      <publishTime>05/03/2016 10:35:08</publishTime>
+      <publishTime>03/05/2016 10:35:08</publishTime>
     </File>
     <File Include="bin/WebServiceExtNet.dll">
-      <publishTime>06/13/2017 17:46:04</publishTime>
+      <publishTime>06/21/2017 16:13:14</publishTime>
     </File>
     <File Include="Catalogo.aspx">
       <publishTime>06/13/2017 11:38:11</publishTime>
     </File>
     <File Include="Portal.aspx">
-      <publishTime>06/12/2017 09:05:05</publishTime>
+      <publishTime>06/21/2017 15:56:57</publishTime>
     </File>
     <File Include="ReportePuntos.aspx">
       <publishTime>06/07/2017 11:36:22</publishTime>

@@ -13,8 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
- //[WebService(Namespace = "http://100.100.100.237:8030/")]
-  [WebService(Namespace = "http://190.187.181.57:8030/")]
+    //[WebService(Namespace = "http://100.100.100.237:8030/")]
+    [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
@@ -280,7 +280,7 @@ namespace WebServiceExtNet
             if (tipo == "RU")
             {
                 SP_FINAL = "UP_MVE_HTMLCORREOUSER";
-                ASUNTO= "Datos de accesso";
+                ASUNTO= "Datos de acceso";
             }
             else if (tipo=="EQ")
             {
@@ -440,9 +440,9 @@ namespace WebServiceExtNet
             string resul = "N";
             Conexion con = new Conexion();
             // String BodyHtml = "", HeadHtml = "", FotHtml = "";
-            SqlConnection cn = con.conexionLys();
+            SqlConnection cn = con.conexion();
             cn.Open();
-            SqlDataAdapter dap = new SqlDataAdapter("SP_CO_MVE_APPCATALOGOLYS", cn);
+            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_CATALOGOLYS", cn);
             DataTable dt = new DataTable();
             dap.SelectCommand.CommandType = CommandType.StoredProcedure;
             dap.SelectCommand.Parameters.AddWithValue("@Item", sfilro);
