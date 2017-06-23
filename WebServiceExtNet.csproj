@@ -61,8 +61,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FactorItem.aspx" />
     <Content Include="Portal.aspx" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="Premios.aspx" />
+    <Content Include="Reglas.aspx" />
     <Content Include="ReportePuntos.aspx" />
     <Content Include="WSExtraNet.asmx" />
   </ItemGroup>
@@ -71,6 +74,13 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="CUsuario.cs" />
+    <Compile Include="FactorItem.aspx.cs">
+      <DependentUpon>FactorItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FactorItem.aspx.designer.cs">
+      <DependentUpon>FactorItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="Portal.aspx.cs">
       <DependentUpon>Portal.aspx</DependentUpon>
@@ -79,6 +89,13 @@
     <Compile Include="Portal.aspx.designer.cs">
       <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Premios.aspx.cs">
+      <DependentUpon>Premios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Premios.aspx.designer.cs">
+      <DependentUpon>Premios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Catalogo.aspx.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
@@ -86,6 +103,13 @@
     </Compile>
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reglas.aspx.cs">
+      <DependentUpon>Reglas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reglas.aspx.designer.cs">
+      <DependentUpon>Reglas.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportePuntos.aspx.cs">
       <DependentUpon>ReportePuntos.aspx</DependentUpon>

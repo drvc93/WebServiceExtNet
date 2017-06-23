@@ -55,7 +55,7 @@ namespace WebServiceExtNet
                     //rutaimg = @Constantes.CarpetaFotos+sfilro+".jpg";
                    rutaimg = Server.MapPath("~/Fotos") + "\\" + sfilro + ".jpg";
                     //rutaimg = Constantes.CarpetaFotos+sfilro+".jpg";
-                    CopyFile(rutaimg);
+                   // CopyFile(rutaimg);
                     if (System.IO.File.Exists(@rutaimg))
                     {
                         // Bitmap b = new Bitmap(@"\\IBSERVER_1\\Servidor de Archivos\\Fotos\\L50.jpg");
