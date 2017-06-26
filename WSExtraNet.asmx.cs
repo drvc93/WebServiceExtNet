@@ -13,8 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-   // [WebService(Namespace = "http://100.100.100.237:8030/")]
-    [WebService(Namespace = "http://190.187.181.57:8030/")]
+    [WebService(Namespace = "http://100.100.100.237:8030/")]
+   // [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
@@ -143,6 +143,42 @@ namespace WebServiceExtNet
 
             return res;
         }
+
+        [WebMethod]
+        public ItemFactor[] GetItemsFactor(string Dni) {
+            Conexion con = new Conexion();
+            List<ItemFactor> listItem = new List<ItemFactor>();
+            // String BodyHtml = "", HeadHtml = "", FotHtml = "";
+            SqlConnection cn = con.conexion();
+            cn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter("UP_MVE_FACTORITEM", cn);
+            DataTable dt = new DataTable();
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dap.SelectCommand.Parameters.AddWithValue("@Dni", Dni);
+
+            dap.Fill(dt);
+            cn.Close();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    ItemFactor it = new ItemFactor();
+                    it.Item = dt.Rows[i]["c_item"].ToString();
+                    it.Flagcontador = dt.Rows[i]["c_flagactcontador"].ToString();
+                    it.Propaganda = dt.Rows[i]["c_propaganda"].ToString();
+                    it.Segundos = Convert.ToInt32(dt.Rows[i]["n_segundosTot"]);
+                    it.DescPromo = dt.Rows[i]["c_htmlDesc"].ToString() ; 
+                    listItem.Add(it);
+                }
+            
+            }
+
+            return listItem.ToArray();
+        
+        }
+
 
         [WebMethod]
         public string TransferirUsuario(string tipo, int correlativo)

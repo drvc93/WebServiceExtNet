@@ -42,6 +42,8 @@ namespace WebServiceExtNet
             {
 
 
+                
+
                 rptFactorItem.DataSource = dt;
                 rptFactorItem.DataBind();
 
@@ -58,10 +60,16 @@ namespace WebServiceExtNet
             {
                 int duracion = Convert.ToInt32(dtFact.Rows[i]["n_segundosTot"]);
                 string id = i.ToString();
-                string keyjs = "sss" + i.ToString()  +"sss";
+                string keyjs = "Script" + i.ToString() ;
+                string flagcot = dtFact.Rows[i]["c_flagactcontador"].ToString();
               //  id = "#" + id;
-                string Jscript = "Activate(" + duracion + "," + id + ")";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), keyjs, Jscript, true);
+                if (flagcot == "S")
+                {
+                    string Jscript = "Activate(" + duracion + "," + id + ");";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), keyjs, Jscript, true);
+                }
+               // Page.ClientScript.RegisterStartupScript(this.GetType(), keyjs, Jscript, true);
+              
                 
             
             }

@@ -82,6 +82,7 @@
       <DependentUpon>FactorItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="IniFile.cs" />
+    <Compile Include="ItemFactor.cs" />
     <Compile Include="Portal.aspx.cs">
       <DependentUpon>Portal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

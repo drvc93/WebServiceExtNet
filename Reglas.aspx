@@ -19,7 +19,7 @@
                                     PROMOCION
                                 </td>
                                 <td style="text-align:center;border-bottom-right-radius:5px; font-weight:bold; background-color:red; color:white">
-                                    <%--REGLA--%>
+                                    REGLA
                                 </td>
                             </tr>
                     </HeaderTemplate>
