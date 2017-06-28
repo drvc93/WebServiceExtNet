@@ -13,8 +13,8 @@ namespace WebServiceExtNet
     /// <summary>
     /// Descripción breve de WSExtraNet
     /// </summary>
-    [WebService(Namespace = "http://100.100.100.237:8030/")]
-   // [WebService(Namespace = "http://190.187.181.57:8030/")]
+   // [WebService(Namespace = "http://100.100.100.237:8030/")]
+    [WebService(Namespace = "http://190.187.181.57:8030/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
@@ -344,8 +344,9 @@ namespace WebServiceExtNet
                 SmtpClient client = new SmtpClient();
                 client.Port = Constantes.PuertoSMTP;
                 client.Host = Constantes.HostSMPT;//"filtroslys.com.pe";//"smtp.gmail.com";
-                client.EnableSsl = false;
-                client.Timeout = Constantes.TimeOutMail;
+                client.EnableSsl = true;
+               client.Timeout = Constantes.TimeOutMail;
+                client.TargetName = "STARTTLS/smtp.office365.com";
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.Credentials = new System.Net.NetworkCredential(Constantes.UserCorreo, Constantes.Password);
