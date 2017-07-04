@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Services;
@@ -30,6 +31,8 @@ namespace WebServiceExtNet
         {
             return "Hola a todos";
         }
+
+     
 
         [WebMethod]
         public string VerificarUsuarioExiste(string dni)
@@ -208,12 +211,17 @@ namespace WebServiceExtNet
             }
 
             if (res == "OK")
+                
 
             {
                 
                     res = this.EnviarCorreoInfo(tipo,correlativo);
-                
 
+                    if ( String.IsNullOrEmpty(res) == true)
+                    {
+
+                        res = "OK";
+                    }
             }
 
             return res;
@@ -349,7 +357,7 @@ namespace WebServiceExtNet
                 client.TargetName = "STARTTLS/smtp.office365.com";
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential(Constantes.UserCorreo, Constantes.Password);
+                client.Credentials = new System.Net.NetworkCredential(Constantes.Correo, Constantes.Password);
 
                 MailMessage mm = new MailMessage(Constantes.Correo, correEnv, ASUNTO, Html);
                 mm.IsBodyHtml = true;
@@ -364,7 +372,8 @@ namespace WebServiceExtNet
 
                 resulmail = e.Message;
             }
-
+            
+           // string resulmail  = "";
             return resulmail;
         }
 

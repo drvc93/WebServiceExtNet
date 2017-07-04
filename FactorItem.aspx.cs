@@ -63,11 +63,11 @@ namespace WebServiceExtNet
                 string keyjs = "Script" + i.ToString() ;
                 string flagcot = dtFact.Rows[i]["c_flagactcontador"].ToString();
               //  id = "#" + id;
-                if (flagcot == "S")
-                {
+               // if (flagcot == "S")
+               // {
                     string Jscript = "Activate(" + duracion + "," + id + ");";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), keyjs, Jscript, true);
-                }
+              //  }
                // Page.ClientScript.RegisterStartupScript(this.GetType(), keyjs, Jscript, true);
               
                 

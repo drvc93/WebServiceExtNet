@@ -28,12 +28,14 @@
                     minutes = minutes < 10 ? "0" + minutes : minutes;
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                    display.textContent = " Vence en "+hours + ":" + minutes + ":" + seconds;
+                    display.textContent = " Vence en " + hours + ":" + minutes + ":" + seconds;
 
+                    
                     if (diff <= 0) {
                         // add one second so that the count down starts at the full duration
                         // example 05:00 not 04:59
                         start = Date.now() + 1000;
+                        
                     }
                 };
                 // we don't want to wait a full second before the timer starts
@@ -49,11 +51,11 @@
         </script>
     </head>
     <body style="width:100%;" >
-            
+
         <form id="form1" runat="server" style="width:100%;" >
             <div class="divresp">
                 <div  runat ="server" id="divConteo" style="padding:5px; border-radius:5px; width:98%;text-align:center;font-size:100%;font-weight:bold;background-color: #F2F5A9;">
-                           <span runat="server" id="lblfchavcto"></span>  <span id="time"></span>
+                    <span runat="server" id="lblfchavcto"></span> <span id="time"></span>
                 </div>
                 <asp:Repeater ID="repeatHtml" runat="server">
                     <HeaderTemplate>
@@ -88,6 +90,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
             </div>
+
         </form>
     </body>
 </html>
